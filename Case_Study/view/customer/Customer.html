@@ -75,7 +75,7 @@
   <div class="container h-100">
     <div class="blog-banner">
       <div class="text-center">
-        <h1> Customer</h1>
+        <h1> Khách Hàng</h1>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="section-intro__style">
     <a href="Create.html" style="text-decoration: none">
       <img src="../../img/home/bed-icon.png" alt="">
-      <h2>Create Customer</h2>
+      <h2>Thêm Khách Hàng</h2>
     </a>
   </div>
 </div>
@@ -92,16 +92,15 @@
   <thead>
   <tr class="table-success">
     <th>No.</th>
-    <th>Type</th>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Gender</th>
-    <th>Id Card</th>
-    <th>Phone</th>
+    <th>Loại Khách</th>
+    <th>Họ Tên</th>
+    <th>Ngày Sinh</th>
+    <th>Giới Tính</th>
+    <th>Số CMND</th>
+    <th>Số Điện Thoại</th>
     <th>Email</th>
-    <th>Address</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th>Địa chỉ</th>
+    <th colspan="2"></th>
   </tr>
   </thead>
   <tbody>
@@ -115,28 +114,29 @@
     <td>0977708085</td>
     <td>phamthanhtri997@gmail.com</td>
     <td>Pleiku</td>
-    <td><a href="Edit.html">Edit</a>
+    <td><a href="Edit.html">Sửa</a>
     </td>
     <td>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Delete
+        Xoá
       </button>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog"style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
+        <div class="modal-dialog"
+             style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Bạn có muốn xoá
+              Bạn có muốn xoá khách hàng
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+              <button type="button" class="btn btn-primary">Xoá</button>
             </div>
           </div>
         </div>
