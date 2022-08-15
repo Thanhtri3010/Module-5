@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class CalculatorComponent implements OnInit {
   firstNumber = 0;
   secondNumber = 0;
-  calculation: String;
+  calculation: string;
   result: any;
 
   constructor() {
@@ -29,9 +29,9 @@ export class CalculatorComponent implements OnInit {
         this.result = firstNumber * secondNumber;
         break;
       case 'division':
-        if (secondNumber != 0) {
+        if (secondNumber !== 0) {
           this.result = firstNumber / secondNumber;
-          break
+          break;
         } else {
           this.result = "Cannot be divided by 0!"
         }
