@@ -1,0 +1,27 @@
+<p>calculator works!</p>
+<h2>Calculator</h2>
+<table>
+  <tr>
+    <th>First Number</th>
+    <th>Calculation</th>
+    <th>Second Number</th>
+    <th colspan="2">Result</th>
+  </tr>
+  <tr>
+    <td><input type="number" [(ngModel)]="firstNumber"></td>
+    <td>
+      <select [(ngModel)]="calculation">
+        <option value="">--Calculation--</option>
+        <option value="summation">+</option>
+        <option value="subtraction">-</option>
+        <option value="multiplication">*</option>
+        <option value="division">/</option>
+      </select>
+    </td>
+    <td><input type="number" [(ngModel)]="secondNumber" ></td>
+    <td>
+      <button (click)="calculator(firstNumber,secondNumber,calculation)" >Result</button>
+    </td>
+    <td>{{result}}</td>
+  </tr>
+</table>
