@@ -17,26 +17,26 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  calculator(firstNumber, secondNumber, calculation) {
+  calculator( calculation) {
     switch (calculation) {
       case 'summation':
-        this.result = firstNumber + secondNumber;
+        this.result = this.firstNumber + this.secondNumber;
         break;
       case 'subtraction':
-        this.result = firstNumber - secondNumber;
+        this.result = this.firstNumber - this.secondNumber;
         break;
       case 'multiplication':
-        this.result = firstNumber * secondNumber;
+        this.result = this.firstNumber * this.secondNumber;
         break;
       case 'division':
-        if (secondNumber !== 0) {
-          this.result = firstNumber / secondNumber;
-          break;
+        if (this.secondNumber !== 0) {
+          this.result = this.firstNumber / this.secondNumber;
         } else {
-          this.result = "Cannot be divided by 0!"
+          this.result = 'Cannot be divided by 0!';
         }
+        break;
       default :
-        this.result = "Please enter the calculation"
+        this.result = 'Please enter the calculation';
     }
   }
 }
