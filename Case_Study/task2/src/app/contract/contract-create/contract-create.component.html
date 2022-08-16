@@ -1,1 +1,133 @@
-<p>contract-create works!</p>
+<section class="contact-banner-area" id="contact">
+  <div class="container h-100">
+    <div class="contact-banner">
+      <div class="text-center">
+        <h1>Contract</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="col-lg-12 mt-4">
+  <div class="container-fluid">
+    <div class="row">
+      <h2>Add Contract</h2>
+      <table class="table" cellpadding="5">
+        <tr>
+          <th>Dịch vụ:</th>
+          <td>
+            <select class="form-select">
+              <option value="0">--Chọn dịch vụ--</option>
+              <option value="1">Phòng suite hướng biển</option>
+              <option value="2">Phòng studio hướng biển</option>
+              <option value="3">Phòng deluxe hướng biển</option>
+              <option value="4">Phòng superior hướng hồ</option>
+              <option value="5">Phòng studio hướng vườn</option>
+              <option value="6">Phòng deluxe hướng vườn</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Khách Hàng:</th>
+          <td>
+            <select class="form-select">
+              <option value="0">--Chọn khách hàng--</option>
+              <option value="1">Phạm Thành Tri</option>
+              <option value="2">Thanh Tuyền</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Ngày Làm Hợp Đồng:</th>
+          <td><input class="form-control" type="date"></td>
+        </tr>
+        <tr>
+          <th>Ngày Làm Kết Thúc Hợp Đồng:</th>
+          <td><input class="form-control" type="date"></td>
+        </tr>
+        <tr>
+          <th>Tiền Đặt Cọc:</th>
+          <td><input class="form-control" type="number"></td>
+        </tr>
+        <tr>
+          <th>Tổng Tiền:</th>
+          <td><input class="form-control" type="number"></td>
+        </tr>
+        <tr>
+          <th>Dịch Vụ Đi Kèm:</th>
+          <td>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#attachPlus">
+              +
+            </button>
+            <div class="modal fade" id="attachPlus"
+                 data-bs-backdrop="static"
+                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="addAttachFacilityLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white" id="plus1Label">Thêm dịch vụ đi kèm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped table-bordered">
+                      <tr>
+                        <td>Thuê xe đạp <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Thuê xe máy <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Karaoke <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Buffet buổi sáng <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Buffet buổi trưa <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Buffet buổi tối <input type="checkbox" class="form-check"></td>
+                        <td><input type="number" name="quantity" value="0" class="form-control">
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng
+                    </button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <td align="center">
+          <a routerLink="/contact">
+            <button type="button" class="btn btn-outline-primary">
+              Quay lại
+            </button>
+          </a>
+        </td>
+        <td align="left">
+          <button type="submit" class="btn btn-outline-primary">
+            Thêm mới
+          </button>
+        </td>
+      </table>
+    </div>
+  </div>
+</div>
