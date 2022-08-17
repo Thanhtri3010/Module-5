@@ -31,16 +31,16 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>1</td>
-    <td>Diamond</td>
-    <td>Phạm Thành Tri</td>
-    <td>30/10/1997</td>
-    <td>Nam</td>
-    <td>123456789</td>
-    <td>0977708085</td>
-    <td>phamthanhtri997@gmail.com</td>
-    <td>Pleiku</td>
+  <tr *ngFor="let customer of customer; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{customer.type}}</td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.birthDay}}</td>
+    <td>{{customer.gender}}</td>
+    <td>{{customer.idCard}}</td>
+    <td>{{customer.phone}}</td>
+    <td>{{customer.email}}</td>
+    <td>{{customer.address}}</td>
     <td><a routerLink="/customer/edit">Edit</a>
     </td>
     <td>

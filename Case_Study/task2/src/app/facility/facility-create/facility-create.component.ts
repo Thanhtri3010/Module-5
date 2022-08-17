@@ -11,5 +11,9 @@ export class FacilityCreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  type = "";
 
+  getType(type) {
+    this.type = type;
+  }
 }

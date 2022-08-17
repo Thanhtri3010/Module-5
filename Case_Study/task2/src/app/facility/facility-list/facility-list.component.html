@@ -19,15 +19,15 @@
     </div>
 
     <div class="row pb-4">
-      <div class="col-md-6 col-xl-4 mb-5">
+      <div class="col-md-6 col-xl-4 mb-5" *ngFor="let facility of facility">
         <div class="card card-explore" style="width: 23rem;height: 33rem;">
           <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/suite-sea-view.jpg" alt="">
+            <img class="card-img" [src]="facility.image" alt="">
           </div>
           <div class="card-body">
-            <h3 class="card-explore__price">$150.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">ROOM SUITE SEA VIEW</a></h4>
-            <p>Area: 80.5 m2 connected to a balcony 24 m2. Maximum: 2 adults and 1 child sharing bed with parents.</p>
+            <h3 class="card-explore__price">{{facility.rentCost | currency}} <sub>/ Per Night</sub></h3>
+            <h4 class="card-explore__title "><a href="#" >{{facility.name}}</a></h4>
+            <p>Area: {{facility.area}} {{facility.descriptionOtherConvenience}}</p>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -40,11 +40,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    Confirm
+                    Confirm Delete {{facility.name}}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
                   </div>
                 </div>
               </div>
@@ -55,222 +55,6 @@
             <!-- Button trigger modal -->
             <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                     data-bs-target="#exampleModal1">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 mb-5">
-        <div class="card card-explore" style="width: 23rem;height: 33rem;">
-          <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/Studio-Suite-.jpg" alt="">
-          </div>
-          <div class="card-body">
-            <h3 class="card-explore__price">$170.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">ROOM STUDIO SUITE SEA VIEW</a></h4>
-            <p>Area: 40.1 m2 connected to a balcony of 11.3 m2. Maximum: 2 adults and 1 child sharing bed with
-              parents. </p>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
-                 aria-hidden="true">
-              <div class="modal-dialog"
-                   style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Confirm
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
-            <!-- Button trigger modal -->
-            <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal2">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 mb-5">
-        <div class="card card-explore" style="width: 23rem;height: 33rem;">
-          <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/Garden-Deluxe.jpg" alt="">
-          </div>
-          <div class="card-body">
-            <h3 class="card-explore__price">$190.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">SUPERIOR ROOM WITH GARDEN VIEW</a></h4>
-            <p>Area: 40.1 m2 connected to the balcony 11.3 m2. Maximum: 2 adults and 1 child sharing bed with
-              parents.</p>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3"
-                 aria-hidden="true">
-              <div class="modal-dialog"
-                   style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Confirm
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
-            <!-- Button trigger modal -->
-            <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal3">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 mb-5">
-        <div class="card card-explore" style="width: 23rem;height: 33rem;">
-          <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/Garden-Deluxe.jpg" alt="">
-          </div>
-          <div class="card-body">
-            <h3 class="card-explore__price">$120.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">GARDEN VIEW DELUXE ROOM</a></h4>
-            <p>Area: 43.7 m2 connected to the balcony 11.3 m2. Maximum: 2 adults and 1 child sharing bed with
-              parents. </p>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4"
-                 aria-hidden="true">
-              <div class="modal-dialog"
-                   style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel4">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Confirm
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
-            <!-- Button trigger modal -->
-            <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal4">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 mb-5">
-        <div class="card card-explore" style="width: 23rem;height: 33rem;">
-          <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/Villas_Pool_Villas.jpg" alt="">
-          </div>
-          <div class="card-body">
-            <h3 class="card-explore__price">$1300.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">GARDEN VIEW VILLA WITH PERSONAL POOL</a></h4>
-            <p>Land area: 320 m2 Floor area: 306 m2</p>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5"
-                 aria-hidden="true">
-              <div class="modal-dialog"
-                   style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel5">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Confirm
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
-            <!-- Button trigger modal -->
-            <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal5">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 mb-5">
-        <div class="card card-explore" style="width: 23rem; height: 33rem;">
-          <div class="card-explore__img">
-            <img class="card-img" src="assets/img/home/VillasBeachPoolVillas-.jpg" alt="">
-          </div>
-          <div class="card-body">
-            <h3 class="card-explore__price">$1500.00 <sub>/ Per Night</sub></h3>
-            <h4 class="card-explore__title"><a href="#">SEA VILLA WITH PERSONAL POOL</a></h4>
-            <p>Land area: 900 m2
-              Floor area: 687 m2 </p>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6"
-                 aria-hidden="true">
-              <div class="modal-dialog"
-                   style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -50%); width: 500px">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel6">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Confirm
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
-            <!-- Button trigger modal -->
-            <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal6">
               Delete
             </button>
           </div>

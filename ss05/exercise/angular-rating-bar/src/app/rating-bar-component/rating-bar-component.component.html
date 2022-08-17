@@ -1,0 +1,14 @@
+<h2>Rating Bar</h2>
+<div>
+  <app-rating valueRating={{value}}></app-rating>
+  <div class="d-flex">
+    <div class="unit"
+         *ngFor="let unit of units"
+         (click)="getValue(unit)"
+         [style.backgroundColor]="unit<=value?'greenyellow':'grey'">
+      {{unit}}
+    </div>
+  </div>
+</div>
+
+

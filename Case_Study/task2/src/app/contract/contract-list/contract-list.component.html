@@ -30,14 +30,14 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>1</td>
-    <td>Villa 1</td>
-    <td>Phạm Thành Tri</td>
-    <td>31/08/2021</td>
-    <td>01/09/2021</td>
-    <td>300</td>
-    <td>2000</td>
+  <tr *ngFor="let contract of contract ; index as i">
+    <td>{{i+1}}</td>
+    <td>{{contract.facilityName}}</td>
+    <td>{{contract.customerName}}</td>
+    <td>{{contract.starDay}}</td>
+    <td>{{contract.endDay}}</td>
+    <td>{{contract.deposits}}</td>
+    <td>{{contract.totalPay}}</td>
     <td>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#plus1">+</button>
       <div class="modal fade" id="plus1"

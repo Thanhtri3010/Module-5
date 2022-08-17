@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-facility-edit',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacilityEditComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  type = "";
+
+  getType(type) {
+    this.type = type;
+  }
 }

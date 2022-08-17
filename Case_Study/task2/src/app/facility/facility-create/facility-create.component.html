@@ -11,21 +11,21 @@
 <div class="col-lg-12 mt-4">
   <div class="container-fluid">
     <div class="row">
-      <h2>New Service</h2>
+      <h2>New Facility</h2>
       <table class="table" cellpadding="5">
         <tr>
-          <th>Service Type:</th>
+          <th>Facility Type:</th>
           <td>
-            <select class="form-select" onchange="displayBonus(this)">
-              <option value="0">--Choose Service Type --</option>
-              <option value="1">Villa</option>
-              <option value="2">House</option>
-              <option value="3">Room</option>
+            <select class="form-select" (change)="getType($event.target.value)">
+              <option value="0">--Choose Facility Type --</option>
+              <option value="Villa">Villa</option>
+              <option value="House">House</option>
+              <option value="Room">Room</option>
             </select>
           </td>
         </tr>
         <tr>
-          <th>Service Name:</th>
+          <th>Facility Name:</th>
           <td><input type="text" class="form-control"></td>
         </tr>
         <tr>
@@ -45,38 +45,38 @@
           <td>
             <select class="form-select">
               <option value="0">--Choose Rental Type--</option>
-              <option value="1">Hours</option>
-              <option value="2">Day</option>
-              <option value="3">Month</option>
-              <option value="4">Year</option>
+              <option value="Hours">Hours</option>
+              <option value="Day">Day</option>
+              <option value="Month">Month</option>
+              <option value="Year">Year</option>
             </select>
           </td>
         </tr>
-        <tr hidden id="standardRoom">
+        <tr id="standardRoom" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
           <th>Standard Room:</th>
           <td>
             <select class="form-select">
               <option value="0">--ChooseStandard Room--</option>
-              <option value="1">VIP</option>
-              <option value="2">Professional</option>
-              <option value="3">Standard</option>
-              <option value="4">Normal</option>
+              <option value="VIP">VIP</option>
+              <option value="Professional">Professional</option>
+              <option value="Standard">Standard</option>
+              <option value="Normal">Normal</option>
             </select>
           </td>
         </tr>
-        <tr hidden id="descriptionOtherConvenience">
+        <tr id="descriptionOtherConvenience" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
           <th>Other Description:</th>
           <td><input class="form-control" type="text"/></td>
         </tr>
-        <tr hidden id="poolArea">
+        <tr id="poolArea" *ngIf="type === 'Villa'" type="hidden">
           <th>Pool Area:</th>
           <td><input class="form-control" type="text"/></td>
         </tr>
-        <tr hidden id="numberOfFloors">
+        <tr id="numberOfFloors" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
           <th>Number Of Floor:</th>
           <td><input class="form-control" type="text"/></td>
         </tr>
-        <tr hidden id="facilityFree">
+        <tr id="facilityFree" *ngIf="type === 'Room'" type="hidden">
           <th>Service Free:</th>
           <td><input class="form-control" type="text"/></td>
         </tr>
@@ -89,7 +89,8 @@
                      class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                   <path fill-rule="evenodd"
                         d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                  <path
+                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                 </svg>
               </button>
             </a>
@@ -100,7 +101,8 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                    class="bi bi-plus-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
               </svg>
             </button>
           </td>
@@ -110,32 +112,3 @@
   </div>
 </div>
 
-<script>
-  function displayBonus(facilityTypeId) {
-    if (facilityTypeId.value == 1) {
-      document.getElementById("standardRoom").hidden = false;
-      document.getElementById("descriptionOtherConvenience").hidden = false;
-      document.getElementById("poolArea").hidden = false;
-      document.getElementById("numberOfFloors").hidden = false;
-      document.getElementById("facilityFree").hidden = true;
-    } else if (facilityTypeId.value == 2) {
-      document.getElementById("standardRoom").hidden = false;
-      document.getElementById("descriptionOtherConvenience").hidden = false;
-      document.getElementById("poolArea").hidden = true;
-      document.getElementById("numberOfFloors").hidden = false;
-      document.getElementById("facilityFree").hidden = true;
-    } else if (facilityTypeId.value == 3) {
-      document.getElementById("standardRoom").hidden = true;
-      document.getElementById("descriptionOtherConvenience").hidden = true;
-      document.getElementById("poolArea").hidden = true;
-      document.getElementById("numberOfFloors").hidden = true;
-      document.getElementById("facilityFree").hidden = false;
-    } else {
-      document.getElementById("standardRoom").hidden = true;
-      document.getElementById("descriptionOtherConvenience").hidden = true;
-      document.getElementById("poolArea").hidden = true;
-      document.getElementById("numberOfFloors").hidden = true;
-      document.getElementById("facilityFree").hidden = true;
-    }
-  }
-</script>
