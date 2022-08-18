@@ -33,7 +33,7 @@
   <tbody>
   <tr *ngFor="let customer of customer; index as i">
     <td>{{i + 1}}</td>
-    <td>{{customer.type}}</td>
+    <td>{{customer.type.name}}</td>
     <td>{{customer.name}}</td>
     <td>{{customer.birthDay}}</td>
     <td>{{customer.gender}}</td>
@@ -45,7 +45,8 @@
     </td>
     <td>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      (click)="oppenDelete(customer)">
         Delete
       </button>
 
@@ -56,14 +57,14 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close"  aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Do you want to delete client Phạm Thành Tri
+              Do you want to delete client {{nameDelete}}
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Delete</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="delete(idDelete)">Delete</button>
             </div>
           </div>
         </div>
@@ -96,7 +97,7 @@
         <a href="#" class="page-link">04</a>
       </li>
       <li class="page-item">
-        <a href="#" class="page-link">09</a>
+        <a href="#" class="page-link">05</a>
       </li>
       <li class="page-item">
         <a href="#" class="page-link" aria-label="Next">

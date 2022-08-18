@@ -12,7 +12,7 @@ export class CustomerService {
   customer: Customer[] = [
     {
       id: 1,
-      type: "Diamond",
+      type: {id: 1, name: "Diamond"},
       name: "Phạm Thành Tri",
       birthDay: "30/10/1997",
       gender: "Male",
@@ -23,7 +23,7 @@ export class CustomerService {
     },
     {
       id: 2,
-      type: "Gold",
+      type: {id: 2, name: "Platinum"},
       name: "Thanh Tuyền",
       birthDay: "30/10/1997",
       gender: "Female",
@@ -33,8 +33,8 @@ export class CustomerService {
       address: "Pleiku"
     },
     {
-      id: 2,
-      type: "Menber",
+      id: 3,
+      type: {id: 3, name: "Gold"},
       name: "Tùng Lâm",
       birthDay: "30/10/1998",
       gender: "Male",
@@ -47,5 +47,27 @@ export class CustomerService {
 
   getAll() {
     return this.customer;
+  }
+
+  save(customer: Customer) {
+    this.customer.push(customer);
+  }
+
+  findById(id: number) {
+    return this.customer.find(product => product.id === id);
+  }
+
+  update(id: number, customer: Customer) {
+    for (let i = 0; i < this.customer.length; i++) {
+      if (this.customer[i].id === id) {
+        this.customer[i] = customer;
+      }
+    }
+  }
+
+  delete(id: number) {
+    this.customer = this.customer.filter(customer => {
+      return customer.id !== id;
+    });
   }
 }

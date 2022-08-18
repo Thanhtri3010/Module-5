@@ -105,4 +105,25 @@ export class FacilityService {
   getAll(){
     return this.facility;
   }
+  save(facility: Facility) {
+    this.facility.push(facility);
+  }
+
+  findById(id: number) {
+    return this.facility.find(facility => facility.id === id);
+  }
+
+  update(id: number, facility: Facility) {
+    for (let i = 0; i < this.facility.length; i++) {
+      if (this.facility[i].id === id) {
+        this.facility[i] = facility;
+      }
+    }
+  }
+
+  delete(id: number) {
+    this.facility = this.facility.filter(facility => {
+      return facility.id !== id;
+    });
+  }
 }
