@@ -32,9 +32,9 @@
   <tbody>
   <tr *ngFor="let contract of contract ; index as i">
     <td>{{i+1}}</td>
-    <td>{{contract.facilityName}}</td>
-    <td>{{contract.customerName}}</td>
-    <td>{{contract.starDay}}</td>
+    <td>{{contract.facilityName.name}}</td>
+    <td>{{contract.customerName.name}}</td>
+    <td>{{contract.startDay}}</td>
     <td>{{contract.endDay}}</td>
     <td>{{contract.deposits}}</td>
     <td>{{contract.totalPay}}</td>

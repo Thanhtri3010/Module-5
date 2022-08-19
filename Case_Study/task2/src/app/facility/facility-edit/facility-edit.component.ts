@@ -21,15 +21,15 @@ export class FacilityEditComponent implements OnInit {
       this.facilityForm = new FormGroup({
         id: new FormControl(facility.id),
         facilityType: new FormControl('', [Validators.required]),
-        name: new FormControl('', [Validators.required, Validators.pattern("^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$")]),
-        area: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\\\d*")]),
-        rentCost: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\\\d*")]),
-        peopleMax: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\\\d*")]),
+        name: new FormControl('', [Validators.required, Validators.pattern("^([A-Z\\p{L}]{1}[a-z\\p{L}]*)+(\\s([A-Z\\p{L}]{1}[a-z\\p{L}]*))*$")]),
+        area: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        rentCost: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        peopleMax: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
         rentalType: new FormControl('', [Validators.required]),
         standardRoom: new FormControl('', [Validators.required]),
         descriptionOtherConvenience: new FormControl('', [Validators.required]),
-        poolArea: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\\\d*")]),
-        numberOfFloors: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\\\d*")]),
+        poolArea: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        numberOfFloors: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
         facilityFree: new FormControl('', [Validators.required]),
       });
     });

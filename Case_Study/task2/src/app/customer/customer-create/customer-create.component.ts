@@ -14,7 +14,7 @@ export class CustomerCreateComponent implements OnInit {
   customerForm: FormGroup = new FormGroup({
     id: new FormControl(),
     type: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.pattern("^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$")]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
     birthDay: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     idCard: new FormControl('', [Validators.required, Validators.pattern("\\d{9}")]),

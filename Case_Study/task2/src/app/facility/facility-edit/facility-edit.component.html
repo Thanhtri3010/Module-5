@@ -12,102 +12,119 @@
   <div class="container-fluid">
     <div class="row">
       <h2>New Service</h2>
-      <table class="table" cellpadding="5">
-        <tr>
-          <th>Service Type:</th>
-          <td>
-            <select class="form-select" (change)="getType($event.target.value)">
-              <option value="0">--Choose Service Type --</option>
-              <option value="Villa">Villa</option>
-              <option value="House">House</option>
-              <option value="Room">Room</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th>Service Name:</th>
-          <td><input type="text" class="form-control"></td>
-        </tr>
-        <tr>
-          <th>Area:</th>
-          <td><input type="text" class="form-control"></td>
-        </tr>
-        <tr>
-          <th>Rent Cost:</th>
-          <td><input type="text" class="form-control"></td>
-        </tr>
-        <tr>
-          <th>People Max:</th>
-          <td><input type="text" class="form-control"></td>
-        </tr>
-        <tr>
-          <th>Rental Type:</th>
-          <td>
-            <select class="form-select">
-              <option value="0">--Choose Rental Type--</option>
-              <option value="1">Hours</option>
-              <option value="2">Day</option>
-              <option value="3">Month</option>
-              <option value="4">Year</option>
-            </select>
-          </td>
-        </tr>
-        <tr id="standardRoom" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
-          <th>Standard Room:</th>
-          <td>
-            <select class="form-select">
-              <option value="0">--ChooseStandard Room--</option>
-              <option value="1">VIP</option>
-              <option value="2">Professional</option>
-              <option value="3">Standard</option>
-              <option value="4">Normal</option>
-            </select>
-          </td>
-        </tr>
-        <tr id="descriptionOtherConvenience" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
-          <th>Other Description:</th>
-          <td><input class="form-control" type="text"/></td>
-        </tr>
-        <tr id="poolArea" *ngIf="type === 'Villa'" type="hidden">
-          <th>Pool Area:</th>
-          <td><input class="form-control" type="text"/></td>
-        </tr>
-        <tr id="numberOfFloors" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
-          <th>Number Of Floor:</th>
-          <td><input class="form-control" type="text"/></td>
-        </tr>
-        <tr id="facilityFree" *ngIf="type === 'Room'" type="hidden">
-          <th>Service Free:</th>
-          <td><input class="form-control" type="text"/></td>
-        </tr>
-        <tr>
-          <td align="center">
-            <a routerLink="/facility">
-              <button type="button" class="btn btn-outline-primary">
-                Back
+      <form [formGroup]="facilityForm" (ngSubmit)="update(id)">
+        <table class="table" cellpadding="5">
+          <tr>
+            <th>Facility Type:</th>
+            <td>
+              <select class="form-select" formControlName="facilityType" (change)="getType($event.target.value)">
+                <option value="">--Choose Facility Type --</option>
+                <option value="Villa">Villa</option>
+                <option value="House">House</option>
+                <option value="Room">Room</option>
+              </select>
+              <div class="text-danger" *ngFor="let validation of validationMessage.facilityType">
+                <span *ngIf="facilityForm.get('facilityType').hasError(validation.type) && facilityForm.get('facilityType').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Facility Name:</th>
+            <td><input type="text" class="form-control" formControlName="name"></td>
+            <div class="text-danger" *ngFor="let validation of validationMessage.name">
+              <span *ngIf="facilityForm.get('name').hasError(validation.type) && facilityForm.get('name').touched">{{validation.message}}</span>
+            </div>
+          </tr>
+          <tr>
+            <th>Area:</th>
+            <td><input type="text" class="form-control" formControlName="area"></td>
+            <div class="text-danger" *ngFor="let validation of validationMessage.area">
+              <span *ngIf="facilityForm.get('area').hasError(validation.type) && facilityForm.get('area').touched">{{validation.message}}</span>
+            </div>
+          </tr>
+          <tr>
+            <th>Rent Cost:</th>
+            <td><input type="text" class="form-control" formControlName="cost"></td>
+            <div class="text-danger" *ngFor="let validation of validationMessage.rentCost">
+              <span *ngIf="facilityForm.get('rentCost').hasError(validation.type) && facilityForm.get('rentCost').touched">{{validation.message}}</span>
+            </div>
+          </tr>
+          <tr>
+            <th>People Max:</th>
+            <td><input type="text" class="form-control"></td>
+            <div class="text-danger" *ngFor="let validation of validationMessage.peopleMax">
+              <span *ngIf="facilityForm.get('peopleMax').hasError(validation.type) && facilityForm.get('peopleMax').touched">{{validation.message}}</span>
+            </div>
+          </tr>
+          <tr>
+            <th>Rental Type:</th>
+            <td>
+              <select class="form-select" formControlName="rentalType">
+                <option value="">--Choose Rental Type--</option>
+                <option value="Hours">Hours</option>
+                <option value="Day">Day</option>
+                <option value="Month">Month</option>
+                <option value="Year">Year</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="standardRoom" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
+            <th>Standard Room:</th>
+            <td>
+              <select class="form-select">
+                <option value="0">--ChooseStandard Room--</option>
+                <option value="VIP">VIP</option>
+                <option value="Professional">Professional</option>
+                <option value="Standard">Standard</option>
+                <option value="Normal">Normal</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="descriptionOtherConvenience" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
+            <th>Other Description:</th>
+            <td><input class="form-control" type="text" formControlName="descriptionOtherConvenience"></td>
+          </tr>
+          <tr id="poolArea" *ngIf="type === 'Villa'" type="hidden" formControlName="poolArea">
+            <th>Pool Area:</th>
+            <td><input class="form-control" type="text"></td>
+          </tr>
+          <tr id="numberOfFloors" *ngIf="type === 'Villa' || type === 'House'" type="hidden" >
+            <th>Number Of Floor:</th>
+            <td><input class="form-control" type="text" formControlName="numberOfFloors"></td>
+          </tr>
+          <tr id="facilityFree" *ngIf="type === 'Room'" type="hidden">
+            <th>Service Free:</th>
+            <td><input class="form-control" type="text" formControlName="facilityFree"></td>
+          </tr>
+          <tr>
+            <td align="center">
+              <a routerLink="/facility">
+                <button type="button" class="btn btn-outline-primary">
+                  Back
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                    <path
+                      d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                  </svg>
+                </button>
+              </a>
+            </td>
+            <td align="left">
+              <button type="submit" class="btn btn-outline-primary">
+                Add
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                        d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                     class="bi bi-plus-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                   <path
-                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                 </svg>
               </button>
-            </a>
-          </td>
-          <td align="left">
-            <button type="submit" class="btn btn-outline-primary">
-              Add
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-plus-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path
-                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg>
-            </button>
-          </td>
-        </tr>
-      </table>
+            </td>
+          </tr>
+        </table>
+      </form>
     </div>
   </div>
 </div>

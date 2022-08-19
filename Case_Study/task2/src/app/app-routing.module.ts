@@ -8,6 +8,7 @@ import {CustomerEditComponent} from "./customer/customer-edit/customer-edit.comp
 import {CustomerCreateComponent} from "./customer/customer-create/customer-create.component";
 import {FacilityEditComponent} from "./facility/facility-edit/facility-edit.component";
 import {FacilityCreateComponent} from "./facility/facility-create/facility-create.component";
+// @ts-ignore
 import {ContractCreateComponent} from "./contract/contract-create/contract-create.component";
 
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'customer', component: CustomerListComponent},
   {path: 'facility', component: FacilityListComponent},
   {path: 'contract', component: ContractListComponent},
-  {path: 'customer/edit', component: CustomerEditComponent},
+  {path: 'customer/edit/:id', component: CustomerEditComponent},
   {path: 'customer/create', component: CustomerCreateComponent},
   {path: 'facility/edit', component: FacilityEditComponent},
   {path: 'facility/create', component: FacilityCreateComponent},

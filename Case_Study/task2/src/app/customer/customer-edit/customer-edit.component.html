@@ -50,9 +50,9 @@
             <td>
               <select class="form-select" formControlName="gender">
                 <option [ngValue]="null" disabled>--Gender--</option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-                <option value="3">LGBT</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="LGBT">LGBT</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validationMessage.gender">
                 <span *ngIf="customerForm.get('gender').hasError(validation.type) && customerForm.get('gender').touched">{{validation.message}}</span>

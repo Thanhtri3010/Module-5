@@ -23,14 +23,14 @@ export class CustomerEditComponent implements OnInit {
       const customer = this.findById(this.id);
       this.customerForm = new FormGroup({
         id: new FormControl(customer.id),
-        type: new FormControl('', [Validators.required]),
-        name: new FormControl('', [Validators.required, Validators.pattern("^([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}$")]),
-        birthDay: new FormControl('', [Validators.required]),
-        gender: new FormControl('', [Validators.required]),
-        idCard: new FormControl('', [Validators.required, Validators.pattern("\\d{9}")]),
-        phone: new FormControl('', [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        address: new FormControl('', [Validators.required]),
+        type: new FormControl(customer.type, [Validators.required]),
+        name: new FormControl('', [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
+        birthDay: new FormControl(customer.birthDay, [Validators.required]),
+        gender: new FormControl(customer.gender, [Validators.required]),
+        idCard: new FormControl(customer.idCard, [Validators.required, Validators.pattern("\\d{9}")]),
+        phone: new FormControl(customer.phone, [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
+        email: new FormControl(customer.email, [Validators.required, Validators.email]),
+        address: new FormControl(customer.address, [Validators.required]),
       });
     });
   }

@@ -41,7 +41,7 @@
     <td>{{customer.phone}}</td>
     <td>{{customer.email}}</td>
     <td>{{customer.address}}</td>
-    <td><a routerLink="/customer/edit">Edit</a>
+    <td><a [routerLink]="['/customer/edit',customer.id]">Edit</a>
     </td>
     <td>
       <!-- Button trigger modal -->
