@@ -27,7 +27,7 @@ export class CustomerCreateComponent implements OnInit {
   constructor(private customerService: CustomerService,
               private customerTypeService: CustomerTypeService,
               private router: Router) {
-  }
+  }x
 
   ngOnInit(): void {
   }

@@ -40,11 +40,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    Confirm Delete {{facility.name}}
+                    Confirm Delete {{nameDelete}}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(idDelete)" data-bs-dismiss="modal" >Delete</button>
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
             <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
             <!-- Button trigger modal -->
             <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal1">
+                    data-bs-target="#exampleModal1 " (click)="oppenDelete(facility)">
               Delete
             </button>
           </div>

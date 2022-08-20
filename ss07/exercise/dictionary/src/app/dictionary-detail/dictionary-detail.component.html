@@ -1,0 +1,6 @@
+<div *ngIf="dictionary; else template">
+  <h3>{{dictionary.word}}: <span style="color: green">{{dictionary.translate}}</span></h3>
+</div>
+<ng-template #template>
+  <p>Not available</p>
+</ng-template>

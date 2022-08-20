@@ -1,0 +1,45 @@
+<h1>Danh sách sản phẩm</h1>
+<table>
+  <tr>
+    <td>STT</td>
+    <td>Tên</td>
+    <td>Giá</td>
+    <td>Mô tả</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr *ngFor="let product of products; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td><a [routerLink]="['/product/edit',product.id]">Edit</a></td>
+    <td>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="oppenDelete(product)">
+        Delete
+      </button>
+
+    </td>
+
+  </tr>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog"
+       style="position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, -150%); width: 500px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+        <button type="button" class="btn-close"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete {{nameDelete}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="delete(idDelete)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,14 +44,14 @@
           </tr>
           <tr>
             <th>Rent Cost:</th>
-            <td><input type="text" class="form-control" formControlName="cost"></td>
+            <td><input type="text" class="form-control" formControlName="rentCost"></td>
             <div class="text-danger" *ngFor="let validation of validationMessage.rentCost">
               <span *ngIf="facilityForm.get('rentCost').hasError(validation.type) && facilityForm.get('rentCost').touched">{{validation.message}}</span>
             </div>
           </tr>
           <tr>
             <th>People Max:</th>
-            <td><input type="text" class="form-control"></td>
+            <td><input type="text" class="form-control" formControlName="peopleMax"></td>
             <div class="text-danger" *ngFor="let validation of validationMessage.peopleMax">
               <span *ngIf="facilityForm.get('peopleMax').hasError(validation.type) && facilityForm.get('peopleMax').touched">{{validation.message}}</span>
             </div>
@@ -66,12 +66,15 @@
                 <option value="Month">Month</option>
                 <option value="Year">Year</option>
               </select>
+              <div class="text-danger" *ngFor="let validation of validationMessage.rentType">
+                <span *ngIf="facilityForm.get('rentType').hasError(validation.type) && facilityForm.get('rentType').touched">{{validation.message}}</span>
+              </div>
             </td>
           </tr>
           <tr id="standardRoom" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
             <th>Standard Room:</th>
             <td>
-              <select class="form-select">
+              <select class="form-select" formControlName="standardRoom">
                 <option value="0">--ChooseStandard Room--</option>
                 <option value="VIP">VIP</option>
                 <option value="Professional">Professional</option>
@@ -80,7 +83,7 @@
               </select>
             </td>
           </tr>
-          <tr id="descriptionOtherConvenience" *ngIf="type === 'Villa' || type === 'House'" type="hidden">
+          <tr id="descriptionOtherConvenience" *ngIf="type === 'Villa' || type === 'House'" type="hidden" >
             <th>Other Description:</th>
             <td><input class="form-control" type="text" formControlName="descriptionOtherConvenience"></td>
           </tr>
@@ -112,7 +115,7 @@
               </a>
             </td>
             <td align="left">
-              <button type="submit" class="btn btn-outline-primary">
+              <button type="submit" class="btn btn-outline-primary" [disabled]="!facilityForm.valid" >
                 Add
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-plus-circle" viewBox="0 0 16 16">
