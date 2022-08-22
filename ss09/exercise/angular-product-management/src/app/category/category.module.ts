@@ -7,15 +7,11 @@ import {CategoryEditComponent} from './category-edit/category-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    CategoryListComponent,
-    CategoryCreateComponent,
-    CategoryEditComponent],
+  declarations: [CategoryListComponent, CategoryCreateComponent, CategoryEditComponent],
   imports: [
     CommonModule,
     CategoryRoutingModule,
     ReactiveFormsModule
   ]
 })
-export class CategoryModule {
-}
+export class CategoryModule { }

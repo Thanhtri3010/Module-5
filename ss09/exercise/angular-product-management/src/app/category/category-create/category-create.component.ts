@@ -15,7 +15,7 @@ export class CategoryCreateComponent implements OnInit {
     name: new FormControl(),
   });
 
-  constructor(private categoryService: CategoryService, private router: Router) {
+  constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -25,8 +25,7 @@ export class CategoryCreateComponent implements OnInit {
     const category = this.categoryForm.value;
     this.categoryService.saveCategory(category).subscribe(() => {
       this.categoryForm.reset();
-      alert('Added Success..');
-      this.router.navigateByUrl('/category');
+      alert('Tạo thành công');
     }, e => {
       console.log(e);
     });

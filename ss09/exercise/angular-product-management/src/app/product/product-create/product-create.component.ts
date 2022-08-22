@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Category} from '../../model/category';
-import {Product} from '../../model/product';
 import {ProductService} from '../product.service';
+import {Router} from '@angular/router';
+import {Category} from '../../model/category';
 import {CategoryService} from '../../category/category.service';
 
 @Component({
@@ -11,43 +11,36 @@ import {CategoryService} from '../../category/category.service';
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-  product: Product;
-  categories: Category[];
   productForm: FormGroup = new FormGroup({
-    id: new FormControl(),
     name: new FormControl(),
     price: new FormControl(),
     description: new FormControl(),
-    category: new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl()
-    })
+    category: new FormControl()
   });
+  categories: Category[] = [];
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService) {
   }
 
-  ngOnInit(): void {
-    this.getAllCategories();
-  }
-
-  getAllCategories() {
-    this.categoryService.getAll().subscribe(categories => {
-      this.categories = categories;
-    });
-  }
-
-  findCategoryById(id: number) {
-    this.categoryService.findById(id).subscribe(category => {
-      this.product.category.name = category.name;
-      this.productService.saveProduct(this.product).subscribe();
-      this.productForm.reset();
-    });
+  ngOnInit() {
+    this.getAllCategory();
   }
 
   submit() {
-    this.product = this.productForm.value;
-    this.findCategoryById(this.product.category.id);
+    const product = this.productForm.value;
+    product.category = {
+      id: product.category
+    };
+    this.productService.saveProduct(product).subscribe(() => {
+      alert('Tạo thành công');
+      this.productForm.reset();
+    }, e => console.log(e));
+  }
+
+  getAllCategory() {
+    this.categoryService.getAll().subscribe(categoires => {
+      this.categories = categoires;
+    });
   }
 }

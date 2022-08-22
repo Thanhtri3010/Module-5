@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Product} from '../../model/product';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Category} from '../../model/category';
-import {CategoryService} from '../../category/category.service';
 import {ProductService} from '../product.service';
+import {CategoryService} from '../../category/category.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -12,61 +12,47 @@ import {ProductService} from '../product.service';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  categories: Category[];
-  product: Product;
-  productForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl(),
-    price: new FormControl(),
-    description: new FormControl(),
-    category: new FormGroup({
-      id: new FormControl(),
-      name: new FormControl()
-    })
-  });
+  productForm: FormGroup;
+  id: number;
+  categories: Category[] = [];
 
   constructor(private productService: ProductService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.id = +paramMap.get('id');
+      this.getProduct(this.id);
+    });
   }
 
-  ngOnInit(): void {
-    const id = Number(this.activatedRoute.snapshot.params.id);
-    this.getProduct(id);
-    this.getAllCategories();
+  ngOnInit() {
+    this.getAllCategory();
   }
 
   getProduct(id: number) {
     return this.productService.findById(id).subscribe(product => {
-      this.productForm.patchValue(product);
+      this.productForm = new FormGroup({
+        name: new FormControl(product.name),
+        price: new FormControl(product.price),
+        description: new FormControl(product.description),
+        category: new FormControl(product.category.id)
+      });
     });
   }
 
-  getAllCategories() {
-    this.categoryService.getAll().subscribe(categories => {
-      this.categories = categories;
+  updateProduct(id: number) {
+    const product = this.productForm.value;
+    product.category = {
+      id: product.category
+    };
+    this.productService.updateProduct(id, product).subscribe(() => {
+      alert('Cập nhật thành công');
     });
   }
 
-  findCategoryById(id: number) {
-    this.categoryService.findById(id).subscribe(category => {
-      this.product.category.name = category.name;
-      this.updateCategory();
-    });
-  }
-
-  submit() {
-    this.product = this.productForm.value;
-    this.findCategoryById(this.product.category.id);
-  }
-
-  updateCategory() {
-    this.productService.saveEditedProduct(this.product.id, this.product).subscribe(() => {
-      console.log('cap nhat thanh cong');
-      this.router.navigateByUrl('/');
-    }, e => {
-      console.log(e);
+  getAllCategory() {
+    this.categoryService.getAll().subscribe(categoires => {
+      this.categories = categoires;
     });
   }
 }

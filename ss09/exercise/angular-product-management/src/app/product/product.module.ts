@@ -10,7 +10,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     ProductListComponent,
     ProductCreateComponent,
-    ProductEditComponent],
+    ProductEditComponent
+  ],
   imports: [
     CommonModule,
     ProductRoutingModule,

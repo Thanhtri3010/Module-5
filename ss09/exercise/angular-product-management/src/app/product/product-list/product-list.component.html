@@ -1,21 +1,62 @@
-<h1>Danh sách sản phẩm</h1>
-<table>
-  <tr>
-    <td>STT</td>
-    <td>Tên</td>
-    <td>Giá</td>
-    <td>Hạng mục</td>
-    <td>Mô tả</td>
-    <td>Sửa</td>
-    <td>Xóa</td>
-  </tr>
-  <tr *ngFor="let product of products; index as i">
-    <td>{{i + 1}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.category.name}}</td>
-    <td>{{product.description}}</td>
-    <td><a routerLink="/product/edit/{{product.id}}">Sửa</a></td>
-    <td><a href="#" (click)="deleteProduct(product.id)">Xóa</a></td>
-  </tr>
-</table>
+<div class="container">
+  <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+    <h1 class="pt-5">Product List</h1>
+  </div>
+  <div style="text-align: center">
+    <a routerLink="/create">
+      Create
+    </a>
+  </div>
+
+  <div>
+    <table class="table mt-5">
+      <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let product of products; index as i">
+        <td>{{i + 1}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.category.name}}</td>
+        <td><a [routerLink]="['/edit', product.id]">Edit</a>
+        <td>
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  (click)="openDelete(product.id,product.name)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </table>
+    <a routerLink="/category">Category >></a>
+  </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Are You Sure ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete: <span style="color: red"> {{name}} </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" style="border: none; background: none" data-bs-dismiss="modal" (click)="delete(id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

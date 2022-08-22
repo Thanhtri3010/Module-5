@@ -6,15 +6,17 @@ import {CategoryEditComponent} from './category-edit/category-edit.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'list',
     component: CategoryListComponent
-  }, {
+  },
+  {
     path: 'create',
     component: CategoryCreateComponent
-  }, {
+  },
+  {
     path: 'edit/:id',
     component: CategoryEditComponent
-  },
+  }
 ];
 
 @NgModule({

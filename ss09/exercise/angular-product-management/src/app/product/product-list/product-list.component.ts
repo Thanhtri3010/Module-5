@@ -1,22 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../../model/product';
-import {Router} from '@angular/router';
 import {ProductService} from '../product.service';
+import {Product} from '../../model/product';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductComponent implements OnInit {
-  product: Product;
+export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  id: number;
+  name: string;
 
-  constructor(private productService: ProductService,
-              private router: Router) {
+  constructor(private productService: ProductService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getAll();
   }
 
@@ -26,9 +25,16 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  deleteProduct(id: number) {
-    this.productService.deleteProduct(id).subscribe(products => {
+  openDelete(id: number, name: string): void {
+    this.id = id;
+    this.name = name;
+  }
+
+  delete(id: number): void {
+    this.productService.deleteProduct(id).subscribe(() => {
       this.getAll();
+    }, e => {
+      console.log(e);
     });
   }
 }
