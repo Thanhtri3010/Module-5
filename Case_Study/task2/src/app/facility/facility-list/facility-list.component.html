@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="card-body">
-            <a class="card-explore__link" routerLink="/facility/edit">Edit<i class="ti-arrow-right"></i></a>
+            <a class="card-explore__link" [routerLink]="['/facility/edit',facility.id]">Edit<i class="ti-arrow-right"></i></a>
             <!-- Button trigger modal -->
             <button style="float: right" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                     data-bs-target="#exampleModal1 " (click)="oppenDelete(facility)">

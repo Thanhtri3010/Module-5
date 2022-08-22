@@ -23,8 +23,8 @@ export class CustomerEditComponent implements OnInit {
       const customer = this.findById(this.id);
       this.customerForm = new FormGroup({
         id: new FormControl(customer.id),
-        type: new FormControl(customer.type, [Validators.required]),
-        name: new FormControl('', [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
+        type: new FormControl(customer.type.id, [Validators.required]),
+        name: new FormControl(customer.name, [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
         birthDay: new FormControl(customer.birthDay, [Validators.required]),
         gender: new FormControl(customer.gender, [Validators.required]),
         idCard: new FormControl(customer.idCard, [Validators.required, Validators.pattern("\\d{9}")]),
@@ -46,6 +46,7 @@ export class CustomerEditComponent implements OnInit {
 
   update(id: number) {
     const customer = this.customerForm.value;
+    customer.type = this.customerTypeService.findById(parseInt(this.customerForm.value.type));
     this.customerService.update(id, customer);
     alert('Update Successful');
     this.router.navigate(['/customer']);

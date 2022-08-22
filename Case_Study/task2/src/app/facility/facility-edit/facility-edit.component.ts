@@ -20,17 +20,17 @@ export class FacilityEditComponent implements OnInit {
       const facility = this.findById(this.id);
       this.facilityForm = new FormGroup({
         id: new FormControl(facility.id),
-        facilityType: new FormControl('', [Validators.required]),
-        name: new FormControl('', [Validators.required, Validators.pattern("^([A-Z\\p{L}]{1}[a-z\\p{L}]*)+(\\s([A-Z\\p{L}]{1}[a-z\\p{L}]*))*$")]),
-        area: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
-        rentCost: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
-        peopleMax: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
-        rentalType: new FormControl('', [Validators.required]),
-        standardRoom: new FormControl('', [Validators.required]),
-        descriptionOtherConvenience: new FormControl('', [Validators.required]),
-        poolArea: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
-        numberOfFloors: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
-        facilityFree: new FormControl('', [Validators.required]),
+        facilityType: new FormControl(facility.facilityType, [Validators.required]),
+        name: new FormControl(facility.name, [Validators.required, Validators.pattern("^([A-Z\\p{L}]{1}[a-z\\p{L}]*)+(\\s([A-Z\\p{L}]{1}[a-z\\p{L}]*))*$")]),
+        area: new FormControl(facility.area, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        rentCost: new FormControl(facility.rentCost, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        peopleMax: new FormControl(facility.peopleMax, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        rentalType: new FormControl(facility.rentalType, [Validators.required]),
+        standardRoom: new FormControl(facility.standardRoom, [Validators.required]),
+        descriptionOtherConvenience: new FormControl(facility.descriptionOtherConvenience, [Validators.required]),
+        poolArea: new FormControl(facility.poolArea, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        numberOfFloors: new FormControl(facility.numberOfFloors, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
+        facilityFree: new FormControl(facility.facilityFree, [Validators.required]),
       });
     });
   }

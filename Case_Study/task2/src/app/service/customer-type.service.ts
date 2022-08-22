@@ -19,4 +19,9 @@ export class CustomerTypeService {
   getAll() {
     return this.customerType;
   }
+  findById(id: number) {
+    console.log(id)
+    console.log(this.customerType.find(product => product.id === id))
+    return this.customerType.find(product => product.id === id);
+  }
 }
