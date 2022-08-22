@@ -43,8 +43,8 @@ export class FacilityCreateComponent implements OnInit {
     const facility = this.facilityForm.value;
     this.facilityService.save(facility);
     this.facilityForm.reset();
-    alert('Tạo mới thành công');
-    this.router.navigate(['/facility/list']);
+    alert('Successfully Added New');
+    this.router.navigate(['/facility']);
   }
   validationMessage = {
     name: [

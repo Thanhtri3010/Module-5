@@ -51,8 +51,8 @@ export class FacilityEditComponent implements OnInit {
   update(id: number) {
     const facility = this.facilityForm.value;
     this.facilityService.update(id, facility);
-    alert('Cập nhật thành công');
-    this.router.navigate(['/facility/list']);
+    alert('Update Successful');
+    this.router.navigate(['/facility']);
   }
 
   validationMessage = {

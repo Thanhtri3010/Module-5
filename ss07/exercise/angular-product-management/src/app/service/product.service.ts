@@ -35,18 +35,18 @@ export class ProductService {
   constructor() {
   }
 
-  getAll() {
+  getAll() : Product[] {
     return this.products;
   }
 
-  saveProduct(product) {
+  saveProduct(product):void {
     this.products.push(product);
   }
-  findById(id: number) {
+  findById(id: number):Product {
     return this.products.find(product => product.id === id);
   }
 
-  update(id: number, product: Product) {
+  update(id: number, product: Product) : void{
     for (let i = 0; i < this.products.length; i++) {
       if (this.products[i].id === id) {
         this.products[i] = product;

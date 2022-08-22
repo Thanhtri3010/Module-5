@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Dictionary} from "../model/dictionary";
 
 @Injectable({
@@ -20,11 +20,11 @@ export class DictionaryService {
   constructor() {
   }
 
-  getAll() {
+  getAll(): Dictionary[] {
     return this.dictionary;
   }
 
-  getDictionaryByWord(findingWord: string) {
+  getDictionaryByWord(findingWord: string): Dictionary {
     return this.dictionary.find(temp => temp.word === findingWord)
   }
 }
