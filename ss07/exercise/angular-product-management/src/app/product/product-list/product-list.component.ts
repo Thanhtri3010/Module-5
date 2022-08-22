@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   nameDelete: string;
   idDelete: number;
+
   constructor(private productService: ProductService) {
   }
 
@@ -18,16 +19,16 @@ export class ProductListComponent implements OnInit {
     this.getAll();
   }
 
-  getAll() {
+  getAll(): void {
     this.products = this.productService.getAll();
   }
 
-  oppenDelete(product: Product) {
+  oppenDelete(product: Product): void {
     this.idDelete = product.id
     this.nameDelete = product.name;
   }
 
-  delete(idDelete: number) {
+  delete(idDelete: number): void {
     this.productService.delete(idDelete);
     this.ngOnInit();
   }

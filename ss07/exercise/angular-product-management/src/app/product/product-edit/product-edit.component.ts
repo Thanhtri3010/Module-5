@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Product} from "../../model/product";
 
 @Component({
   selector: 'app-product-edit',
@@ -14,7 +15,7 @@ export class ProductEditComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
-              private router : Router) {
+              private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       const product = this.getProduct(this.id);
@@ -30,12 +31,12 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  getProduct(id: number) {
+  getProduct(id: number): Product {
     return this.productService.findById(id);
   }
 
 
-  updateProduct(id: number) {
+  updateProduct(id: number): void {
     const product = this.productForm.value;
     this.productService.update(id, product);
     alert('Cập nhật thành công');

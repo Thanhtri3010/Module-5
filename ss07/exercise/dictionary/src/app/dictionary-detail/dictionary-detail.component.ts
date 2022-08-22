@@ -22,6 +22,4 @@ export class DictionaryDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 }
