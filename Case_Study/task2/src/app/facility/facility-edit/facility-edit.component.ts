@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FacilityService} from "../../service/facility.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-facility-edit',
@@ -12,12 +13,23 @@ export class FacilityEditComponent implements OnInit {
   facilityForm: FormGroup;
   id: number;
 
+
   constructor(private facilityService: FacilityService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
-      const facility = this.findById(this.id);
+      this.getFacility(this.id)
+    });
+  }
+
+  ngOnInit(): void {
+    this.facilityService.getAll().subscribe();
+  }
+
+  getFacility(id:number) {
+    return this.facilityService.findById(id).subscribe(facility => {
       this.facilityForm = new FormGroup({
         id: new FormControl(facility.id),
         facilityType: new FormControl(facility.facilityType, [Validators.required]),
@@ -31,11 +43,11 @@ export class FacilityEditComponent implements OnInit {
         poolArea: new FormControl(facility.poolArea, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
         numberOfFloors: new FormControl(facility.numberOfFloors, [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
         facilityFree: new FormControl(facility.facilityFree, [Validators.required]),
-      });
+        image: new FormControl(facility.image)
+      })
+    },error => {
+      console.log(error)
     });
-  }
-
-  ngOnInit(): void {
   }
 
   type = "";
@@ -44,15 +56,15 @@ export class FacilityEditComponent implements OnInit {
     this.type = type;
   }
 
-  findById(id: number) {
-    return this.facilityService.findById(id);
-  }
 
   update(id: number) {
     const facility = this.facilityForm.value;
-    this.facilityService.update(id, facility);
-    alert('Update Successful');
-    this.router.navigate(['/facility']);
+    this.facilityService.update(id, facility).subscribe(() => {
+      this.router.navigate(['/facility']);
+      this.toast.success('Edited Facility Success..', 'Notification..');
+    }, e => {
+      console.log(e);
+    });
   }
 
   validationMessage = {

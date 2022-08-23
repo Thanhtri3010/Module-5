@@ -4,6 +4,7 @@ import {CustomerService} from "../../service/customer.service";
 import {CustomerTypeService} from "../../service/customer-type.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {CustomerType} from "../../model/customer-type";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-customer-edit',
@@ -13,44 +14,67 @@ import {CustomerType} from "../../model/customer-type";
 export class CustomerEditComponent implements OnInit {
   customerForm: FormGroup;
   id: number;
+  customerType: CustomerType[] = [];
 
   constructor(private customerService: CustomerService,
               private customerTypeService: CustomerTypeService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
-      const customer = this.findById(this.id);
-      this.customerForm = new FormGroup({
-        id: new FormControl(customer.id),
-        type: new FormControl(customer.type.id, [Validators.required]),
-        name: new FormControl(customer.name, [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
-        birthDay: new FormControl(customer.birthDay, [Validators.required]),
-        gender: new FormControl(customer.gender, [Validators.required]),
-        idCard: new FormControl(customer.idCard, [Validators.required, Validators.pattern("\\d{9}")]),
-        phone: new FormControl(customer.phone, [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
-        email: new FormControl(customer.email, [Validators.required, Validators.email]),
-        address: new FormControl(customer.address, [Validators.required]),
-      });
+      this.getCustomer(this.id);
     });
   }
 
-  customerType: CustomerType[] = this.customerTypeService.getAll();
 
   ngOnInit(): void {
+    this.customerService.getAllCustomerType().subscribe(types => {
+        this.customerType = types;
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
-  findById(id: number) {
-    return this.customerService.findById(id);
+  getCustomer(id: number) {
+    return this.customerService.getCustomerById(id).subscribe(customer => {
+      this.customerForm = new FormGroup({
+          id: new FormControl(customer.id),
+          type: new FormControl(customer.type.id, [Validators.required]),
+          name: new FormControl(customer.name, [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
+          birthDay: new FormControl(customer.birthDay, [Validators.required]),
+          gender: new FormControl(customer.gender, [Validators.required]),
+          idCard: new FormControl(customer.idCard, [Validators.required, Validators.pattern("\\d{9}")]),
+          phone: new FormControl(customer.phone, [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
+          email: new FormControl(customer.email, [Validators.required, Validators.email]),
+          address: new FormControl(customer.address, [Validators.required])
+        });
+    }, error => {
+      console.log(error);
+    });
   }
 
-  update(id: number) {
-    const customer = this.customerForm.value;
-    customer.type = this.customerTypeService.findById(parseInt(this.customerForm.value.type));
-    this.customerService.update(id, customer);
-    alert('Update Successful');
-    this.router.navigate(['/customer']);
+  submit() {
+    if (this.customerForm.valid) {
+      const customer = this.customerForm.value;
+      this.customerService.getCustomerTypeById(customer.type).subscribe(customerType => {
+        customer.type = {
+          id: customerType.id,
+          name: customerType.name
+        }
+        this.customerService.editCustomer(this.id, customer).subscribe(() => {
+          this.toast.success("Cập nhật thành công", "Thông báo")
+        }, e => {
+          console.log(e);
+        }, () => {
+          this.router.navigate(['/customer']);
+        });
+      })
+    }
+
   }
+
 
   validationMessage = {
     name: [

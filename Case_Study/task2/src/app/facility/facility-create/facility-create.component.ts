@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FacilityService} from "../../service/facility.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-facility-create',
@@ -22,12 +23,13 @@ export class FacilityCreateComponent implements OnInit {
     poolArea: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
     numberOfFloors: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
     facilityFree: new FormControl('', [Validators.required]),
-
+    image: new FormControl('')
 
   })
 
   constructor(private facilityService: FacilityService,
-              private router: Router) {
+              private router: Router,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -41,10 +43,13 @@ export class FacilityCreateComponent implements OnInit {
 
   submit() {
     const facility = this.facilityForm.value;
-    this.facilityService.save(facility);
-    this.facilityForm.reset();
-    alert('Successfully Added New');
-    this.router.navigate(['/facility']);
+    this.facilityService.save(facility).subscribe(() => {
+      this.facilityForm.reset();
+      this.toast.success('Added Facility Success..', 'Notification..');
+      this.router.navigate(['/facility']);
+    }, e => {
+      console.log(e);
+    });
   }
   validationMessage = {
     name: [

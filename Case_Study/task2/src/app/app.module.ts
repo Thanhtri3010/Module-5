@@ -10,7 +10,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {FacilityModule} from "./facility/facility.module";
 import {CustomerModule} from "./customer/customer.module";
 import {ContractModule} from "./contract/contract.module";
-
+import {Toast, ToastrModule} from "ngx-toastr";
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,10 @@ import {ContractModule} from "./contract/contract.module";
     ReactiveFormsModule,
     FacilityModule,
     CustomerModule,
-    ContractModule
+    ContractModule,
+    HttpClientModule,
+    ToastrModule.forRoot({timeOut:2000}),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

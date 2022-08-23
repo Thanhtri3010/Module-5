@@ -18,7 +18,7 @@
             <td>
               <select class="form-select" formControlName="type">
                 <option [ngValue]="null" disabled>--Customer Type--</option>
-                <option *ngFor="let customerType of customerType" [ngValue]="customerType">{{customerType.name}}</option>
+                <option *ngFor="let customerType of customerType" [ngValue]="customerType.id">{{customerType.name}}</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validationMessage.type">
                 <span *ngIf="customerForm.get('type').hasError(validation.type) && customerForm.get('type').touched">{{validation.message}}</span>

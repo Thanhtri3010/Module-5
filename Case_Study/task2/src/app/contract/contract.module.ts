@@ -5,6 +5,7 @@ import {ContractRoutingModule} from './contract-routing.module';
 import {ContractListComponent} from "./contract-list/contract-list.component";
 import {ContractCreateComponent} from "./contract-create/contract-create.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     ContractRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class ContractModule {

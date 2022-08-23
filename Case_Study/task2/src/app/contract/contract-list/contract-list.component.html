@@ -15,7 +15,11 @@
     </a>
   </div>
 </div>
-
+<form [formGroup]="searchForm" *ngIf="searchForm" (ngSubmit)="search()">
+  <input class="input-search" type="text" placeholder="Search customer name"
+         formControlName="searchName" name="searchName">
+  <button class="btn-create scrollto" type="submit">Search</button>
+</form>
 <table class="table table-striped table-bordered" id="tableCustomer" style="swidth:100%">
   <thead>
   <tr class="table-success">
@@ -30,7 +34,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let contract of contract ; index as i">
+  <tr *ngFor="let contract of contract  | paginate: { itemsPerPage: 2, currentPage: p}; index as i">
     <td>{{i+1}}</td>
     <td>{{contract.facilityName.name}}</td>
     <td>{{contract.customerName.name}}</td>
@@ -170,3 +174,39 @@
   </tr>
   </tbody>
 </table>
+<pagination-controls class="float-right" (pageChange)="p = $event"></pagination-controls>
+<div>
+  <nav class="blog-pagination justify-content-center d-flex">
+    <ul class="pagination">
+      <li class="page-item">
+        <a href="#" class="page-link" aria-label="Previous">
+          <span aria-hidden="true">
+            <span class="lnr lnr-chevron-left"></span>
+          </span>
+        </a>
+      </li>
+      <li class="page-item active">
+        <a href="#" class="page-link">01</a>
+      </li>
+      <li class="page-item ">
+        <a href="#" class="page-link">02</a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link">03</a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link">04</a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link">05</a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link" aria-label="Next">
+          <span aria-hidden="true">
+            <span class="lnr lnr-chevron-right"></span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

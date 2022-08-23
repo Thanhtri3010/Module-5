@@ -9,27 +9,35 @@ import {FacilityService} from "../../service/facility.service";
 })
 export class FacilityListComponent implements OnInit {
   facility: Facility[] = [];
-  nameDelete: string;
-  idDelete: number;
+  name: string;
+  id: number;
 
   constructor(private facilityService: FacilityService) {
+    this.getAllFacilityList()
   }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getAllFacilityList();
   }
 
-  getAll() {
-    this.facility = this.facilityService.getAll();
+  getAllFacilityList() {
+    this.facilityService.getAll().subscribe(data => {
+      this.facility = data
+    }, error => {
+      console.log(error)
+    });
   }
 
-  oppenDelete(facility: Facility) {
-    this.idDelete = facility.id
-    this.nameDelete = facility.name;
+  oppenDelete(id: number, name: string) {
+    this.id = id;
+    this.name = name;
   }
 
-  delete(idDelete: number) {
-    this.facilityService.delete(idDelete);
-    this.ngOnInit();
+  delete() {
+   this.facilityService.delete(this.id).subscribe( data => {
+     this.ngOnInit();
+   },error => {
+     console.log(error)
+     });
   }
 }

@@ -6,6 +6,7 @@ import {FacilityService} from "../../service/facility.service";
 import {CustomerService} from "../../service/customer.service";
 import {ContractService} from "../../service/contract.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-contract-create',
@@ -22,25 +23,50 @@ export class ContractCreateComponent implements OnInit {
     deposits: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
     totalPay: new FormControl('', [Validators.required, Validators.pattern("^[1-9]+\\d*")]),
   });
-  customers: Customer[] = this.customerService.getAll();
+  customers: Customer[] = [];
 
-  facility: Facility[] = this.facilityService.getAll();
+  facility: Facility[] = []
 
   constructor(private facilityService: FacilityService,
               private customerService: CustomerService,
               private contractService: ContractService,
-              private router: Router) {
+              private router: Router,
+              private  toast: ToastrService) {
   }
 
   ngOnInit(): void {
+    this.getCustomer();
+    this.getFacility();
+  }
+
+  getCustomer() {
+    this.customerService.getAllCustomer().subscribe(customers => {
+      this.customers = customers;
+    });
+  }
+
+  getFacility() {
+    this.facilityService.getAll().subscribe(facilities => {
+      this.facility = facilities;
+    });
   }
 
   submit() {
     const contract = this.contractForm.value;
-    this.contractService.save(contract);
-    this.contractForm.reset();
-    alert('Successfully Added New');
-    this.router.navigate(['/contract']);
+    contract.customer = {
+      name: contract.customer
+    };
+    contract.facility = {
+      name: contract.facility
+    };
+
+    this.contractService.createContract(contract).subscribe(() => {
+      this.contractForm.reset();
+      this.toast.success('Added Contract Success..', 'Notification..');
+      this.router.navigate(['/contract']);
+    }, e => {
+      console.log(e);
+    });
   }
 
   validationMessage = {

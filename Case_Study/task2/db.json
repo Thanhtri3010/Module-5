@@ -1,0 +1,245 @@
+{
+  "type": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customer": [
+    {
+      "id": 1,
+      "type": {
+        "id": 1,
+        "name": "Diamond"
+      },
+      "name": "Phạm Thành Tri",
+      "birthDay": "1997-10-30",
+      "gender": "Male",
+      "idCard": "123456789",
+      "phone": "0977708085",
+      "email": "phamthanhtri997@gmail.com",
+      "address": "Pleiku"
+    },
+    {
+      "id": 2,
+      "type": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "name": "Thanh Tuyền",
+      "birthDay": "1997-09-30",
+      "gender": "Female",
+      "idCard": "123456789",
+      "phone": "0911112334",
+      "email": "thanhtuyen@gmail.com",
+      "address": "Pleiku"
+    },
+    {
+      "id": 3,
+      "type": {
+        "id": 5,
+        "name": "Member"
+      },
+      "name": "Tùng Lâm",
+      "birthDay": "1998-10-30",
+      "gender": "Female",
+      "idCard": "200392036",
+      "phone": "0911112335",
+      "email": "tunglam@gmail.com",
+      "address": "Pleiku"
+    }
+  ],
+  "facility": [
+    {
+      "id": 1,
+      "facilityType": "Villa",
+      "name": "ROOM SUITE SEA VIEW",
+      "area": 80.5,
+      "rentCost": 150,
+      "peopleMax": 2,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 20,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/suite-sea-view.jpg"
+    },
+    {
+      "id": 2,
+      "facilityType": "Villa",
+      "name": "ROOM STUDIO SUITE SEA VIEW",
+      "area": 40.1,
+      "rentCost": 170,
+      "peopleMax": 2,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 20,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/Studio-Suite-.jpg"
+    },
+    {
+      "id": 3,
+      "facilityType": "Villa",
+      "name": "SUPERIOR ROOM WITH GARDEN VIEW",
+      "area": 40.1,
+      "rentCost": 190,
+      "peopleMax": 2,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 20,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/Garden-Deluxe.jpg"
+    },
+    {
+      "id": 4,
+      "facilityType": "Villa",
+      "name": "GARDEN VIEW DELUXE ROOM",
+      "area": 43.7,
+      "rentCost": 120,
+      "peopleMax": 2,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 20,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/Garden-Deluxe.jpg"
+    },
+    {
+      "id": 5,
+      "facilityType": "Villa",
+      "name": "GARDEN VIEW VILLA WITH PERSONAL POOL",
+      "area": 320,
+      "rentCost": 1300,
+      "peopleMax": 6,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 50,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/Villas_Pool_Villas.jpg"
+    },
+    {
+      "id": 6,
+      "facilityType": "Villa",
+      "name": "SEA VILLA WITH PERSONAL POOL",
+      "area": 900,
+      "rentCost": 1500,
+      "peopleMax": 6,
+      "rentalType": "Day",
+      "standardRoom": "VIP",
+      "descriptionOtherConvenience": "With Swimming Pool",
+      "poolArea": 200,
+      "numberOfFloors": 2,
+      "facilityFree": "N/A",
+      "image": "assets/img/home/VillasBeachPoolVillas-.jpg"
+    }
+  ],
+  "contract": [
+    {
+      "id": 1,
+      "facilityName": {
+        "id": 1,
+        "name": "ROOM SUITE SEA VIEW"
+      },
+      "customerName": {
+        "id": 1,
+        "name": "Phạm Thành Tri"
+      },
+      "startDay": "31/08/2021",
+      "endDay": "01/09/2021",
+      "deposits": 300,
+      "totalPay": 2000
+    },
+    {
+      "id": 2,
+      "facilityName": {
+        "id": 2,
+        "name": "ROOM STUDIO SUITE SEA VIEW"
+      },
+      "customerName": {
+        "id": 2,
+        "name": "Thanh Tuyền"
+      },
+      "startDay": "20/08/2021",
+      "endDay": "25/08/2021",
+      "deposits": 300,
+      "totalPay": 2000
+    },
+    {
+      "id": 3,
+      "facilityName": {
+        "id": 3,
+        "name": "SUPERIOR ROOM WITH GARDEN VIEW"
+      },
+      "customerName": {
+        "id": 3,
+        "name": "Tùng Lâm"
+      },
+      "startDay": "01/08/2021",
+      "endDay": "05/08/2021",
+      "deposits": 300,
+      "totalPay": 2000
+    },
+    {
+      "id": 676,
+      "facilityName": {
+        "id": 3,
+        "facilityType": "Villa",
+        "name": "SUPERIOR ROOM WITH GARDEN VIEW",
+        "area": 40.1,
+        "rentCost": 190,
+        "peopleMax": 2,
+        "rentalType": "Day",
+        "standardRoom": "VIP",
+        "descriptionOtherConvenience": "With Swimming Pool",
+        "poolArea": 20,
+        "numberOfFloors": 2,
+        "facilityFree": "N/A",
+        "image": "assets/img/home/Garden-Deluxe.jpg"
+      },
+      "customerName": {
+        "id": 3,
+        "type": {
+          "id": 5,
+          "name": "Member"
+        },
+        "name": "Tùng Lâm",
+        "birthDay": "1998-10-30",
+        "gender": "Female",
+        "idCard": "200392036",
+        "phone": "0911112335",
+        "email": "tunglam@gmail.com",
+        "address": "Pleiku"
+      },
+      "startDay": "2022-08-04",
+      "endDay": "2022-08-05",
+      "deposits": 1200,
+      "totalPay": 2000,
+      "customer": {},
+      "facility": {}
+    }
+  ]
+}
