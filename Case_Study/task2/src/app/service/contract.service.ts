@@ -21,6 +21,6 @@ export class ContractService {
   }
 
   searchContract(keySearch: string): Observable<Contract[]> {
-    return this.httpClient.get<Contract[]>(this.URL_CONTRACT +'?facilityType_like=' + keySearch);
+    return this.httpClient.get<Contract[]>(this.URL_CONTRACT +'?facilityName.name_like=' + keySearch);
   }
 }
