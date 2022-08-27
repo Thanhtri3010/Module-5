@@ -1,0 +1,120 @@
+<section class="blog-banner-area" id="about">
+  <div class="container h-100">
+    <div class="blog-banner">
+      <div class="text-center">
+        <h1>Patient</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="col-lg-12 mt-4">
+  <div class="container-fluid">
+    <div class="row">
+      <h2>Sửa Thông Tin Bệnh Án</h2>
+      <form *ngIf="patientForm" [formGroup]="patientForm" (ngSubmit)="submit()">
+        <table class="table" cellpadding="5">
+          <tr>
+            <th>Mã bệnh án:</th>
+            <td>
+              <input type="text" readonly formControlName="id" class="form-control">
+            </td>
+          </tr>
+          <tr>
+            <th>Mã bệnh nhân:</th>
+            <td>
+              <input type="text" readonly formControlName="patienter" class="form-control">
+            </td>
+          </tr>
+          <tr>
+            <th>Tên bệnh nhân:</th>
+            <td>
+              <input class="form-control" type="text" formControlName="name">
+              <div class="text-danger" *ngFor="let validation of validationMessage.name">
+                <span
+                  *ngIf="patientForm.get('name').hasError(validation.type) && patientForm.get('name').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Ngày nhập viện:</th>
+            <td>
+              <input class="form-control" type="date" formControlName="dayIn">
+              <div class="text-danger" *ngFor="let validation of validationMessage.birthDay">
+              <span
+                *ngIf="patientForm.get('dayIn').hasError(validation.type) && patientForm.get('dayIn').touched">{{validation.message}}</span>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <th>Ngày ra viện:</th>
+            <td>
+              <input class="form-control" type="date" formControlName="dayOut">
+              <div class="text-danger" *ngFor="let validation of validationMessage.idCard">
+              <span
+                *ngIf="patientForm.get('dayOut').hasError(validation.type) && patientForm.get('dayOut').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Lí do nhập viện:</th>
+            <td>
+              <input class="form-control" type="text" formControlName="reason">
+              <div class="text-danger" *ngFor="let validation of validationMessage.phone">
+              <span
+                *ngIf="patientForm.get('reason').hasError(validation.type) && patientForm.get('reason').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Phương pháp điều trị:</th>
+            <td>
+              <input class="form-control" type="text" formControlName="method">
+              <div class="text-danger" *ngFor="let validation of validationMessage.email">
+              <span
+                *ngIf="patientForm.get('method').hasError(validation.type) && patientForm.get('method').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Bác sĩ điều trị:</th>
+            <td>
+              <input class="form-control" type="text" formControlName="doctor">
+              <div class="text-danger" *ngFor="let validation of validationMessage.address">
+              <span
+                *ngIf="patientForm.get('doctor').hasError(validation.type) && patientForm.get('doctor').touched">{{validation.message}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <a routerLink="/">
+                <button type="button" class="btn btn-outline-primary">
+                  Back
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                       class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                    <path
+                      d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                  </svg>
+                </button>
+              </a>
+            </td>
+            <td align="left">
+              <button type="submit" class="btn btn-outline-primary" [disabled]="!patientForm.valid">
+                Save
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-plus-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

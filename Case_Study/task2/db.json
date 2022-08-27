@@ -28,11 +28,11 @@
         "id": 1,
         "name": "Diamond"
       },
-      "name": "Phạm Thành Tri",
+      "name": "Phạm Thành Triiiii",
       "birthDay": "1997-10-30",
       "gender": "Male",
       "idCard": "123456789",
-      "phone": "0977708085",
+      "phone": "0907708085",
       "email": "phamthanhtri997@gmail.com",
       "address": "Pleiku"
     },
@@ -63,6 +63,20 @@
       "phone": "0911112335",
       "email": "tunglam@gmail.com",
       "address": "Pleiku"
+    },
+    {
+      "id": 4,
+      "type": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "name": "Hai",
+      "birthDay": "1998-12-01",
+      "gender": "2",
+      "idCard": "123454323",
+      "phone": "09012345454",
+      "email": "fdfd@gamil",
+      "address": "qwergfb"
     }
   ],
   "facility": [

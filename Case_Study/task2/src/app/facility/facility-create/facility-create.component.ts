@@ -44,7 +44,6 @@ export class FacilityCreateComponent implements OnInit {
   submit() {
     const facility = this.facilityForm.value;
     this.facilityService.save(facility).subscribe(() => {
-      this.facilityForm.reset();
       this.toast.success('Added Facility Success..', 'Notification..');
       this.router.navigate(['/facility']);
     }, e => {

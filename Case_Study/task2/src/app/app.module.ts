@@ -12,6 +12,7 @@ import {CustomerModule} from "./customer/customer.module";
 import {ContractModule} from "./contract/contract.module";
 import {Toast, ToastrModule} from "ngx-toastr";
 import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CustomerModule,
     ContractModule,
     HttpClientModule,
-    ToastrModule.forRoot({timeOut:2000}),
+    ToastrModule.forRoot({timeOut: 2000}),
     NgxPaginationModule
   ],
   providers: [],

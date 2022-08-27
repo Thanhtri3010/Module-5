@@ -4,6 +4,7 @@ import {CustomerType} from "../../model/customer-type";
 import {CustomerService} from "../../service/customer.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {CustomerTypeService} from "../../service/customer-type.service";
 
 @Component({
   selector: 'app-customer-create',
@@ -12,58 +13,56 @@ import {ToastrService} from "ngx-toastr";
 })
 export class CustomerCreateComponent implements OnInit {
   customerType: CustomerType[] = [];
-  customerForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    type: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
-    birthDay: new FormControl('', [Validators.required, this.ageValidate]),
-    gender: new FormControl('', [Validators.required]),
-    idCard: new FormControl('', [Validators.required, Validators.pattern("\\d{9}")]),
-    phone: new FormControl('', [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    address: new FormControl('', [Validators.required])
-  });
+  customerForm: FormGroup;
 
   constructor(private customerService: CustomerService,
               private router: Router,
-              private  toast: ToastrService) {
+              private toast: ToastrService,
+              private customerTypeService: CustomerTypeService) {
+
   }
 
   ngOnInit(): void {
     this.customerService.getAllCustomerType().subscribe(data => {
       this.customerType = data;
+      console.log(data);
+      this.customerForm = new FormGroup({
+        id: new FormControl(),
+        type: new FormControl('', [Validators.required]),
+        name: new FormControl('', [Validators.required, Validators.pattern(/^([A-Z][^A-Z0-9\s]+)(\s[A-Z][^A-Z0-9\s]+)*$/)]),
+        birthDay: new FormControl('', [Validators.required, this.ageValidate]),
+        gender: new FormControl('', [Validators.required]),
+        idCard: new FormControl('', [Validators.required, Validators.pattern("\\d{9}")]),
+        phone: new FormControl('', [Validators.required, Validators.pattern("^^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}")]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        address: new FormControl('', [Validators.required])
+      });
     }, error => {
       console.log(error);
     });
-    console.log(this.customerType);
+
   }
 
   submit() {
-    if (this.customerForm.valid) {
-      const customer = this.customerForm.value;
-      console.log(customer.type)
-      this.customerService.getCustomerTypeById(customer.type).subscribe(customerType => {
-        customer.type = {
-          id: customerType.id,
-          name: customerType.name
-        }
-        this.customerService.createCustomer(customer).subscribe(() => {
-          this.toast.success("Cập nhật thành công","Thông báo")
-
-        }, e => {
-          console.log(e);
-        }, () => {
-          this.router.navigate(['/customer']);
-        });
-      })
-    }
+    const customer = this.customerForm.value;
+    this.customerService.getCustomerTypeById(customer.type).subscribe(customerType => {
+      customer.type = {id: customerType.id, name: customerType.name}
+      this.customerService.createCustomer(customer).subscribe(() => {
+        this.customerForm.reset();
+        this.toast.success('Added Customer Success..', 'Notification..');
+        this.router.navigate(['/customer']);
+      }, e => {
+        console.log(e);
+      });
+    })
   }
+
   ageValidate(dob: AbstractControl) {
     const now = new Date();
     const birthDay = new Date(dob.value);
     const age = now.getFullYear() - birthDay.getFullYear();
     if (age < 18) {
-      return {'ageError': true};
+      return {ageError: true};
     }
     return null;
   }

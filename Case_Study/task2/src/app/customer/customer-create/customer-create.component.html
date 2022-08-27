@@ -11,33 +11,40 @@
   <div class="container-fluid">
     <div class="row">
       <h2>Customer New</h2>
-      <form [formGroup]="customerForm" (ngSubmit)="submit()" >
+      <form *ngIf="customerForm" [formGroup]="customerForm" (ngSubmit)="submit()">
         <table class="table" cellpadding="5">
           <tr>
             <th>Customer Type:</th>
             <td>
               <select class="form-select" formControlName="type">
                 <option [ngValue]="null" disabled>--Customer Type--</option>
-                <option *ngFor="let customerType of customerType" [ngValue]="customerType.id">{{customerType.name}}</option>
+                <option *ngFor="let type of customerType" [ngValue]="type.id">{{type.name}}</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validationMessage.type">
-                <span *ngIf="customerForm.get('type').hasError(validation.type) && customerForm.get('type').touched">{{validation.message}}</span>
+                <span
+                  *ngIf="customerForm.get('type').hasError(validation.type) && customerForm.get('type').touched">{{validation.message}}</span>
               </div>
             </td>
           </tr>
           <tr>
             <th>Name:</th>
-            <td><input class="form-control" type="text" formControlName="name"></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.name">
-              <span *ngIf="customerForm.get('name').hasError(validation.type) && customerForm.get('name').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="text" formControlName="name">
+              <div class="text-danger" *ngFor="let validation of validationMessage.name">
+                <span
+                  *ngIf="customerForm.get('name').hasError(validation.type) && customerForm.get('name').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>Birth Day:</th>
-            <td><input class="form-control" type="date" formControlName="birthDay"></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.birthDay">
-              <span *ngIf="customerForm.get('birthDay').hasError(validation.type) && customerForm.get('birthDay').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="date" formControlName="birthDay">
+              <div class="text-danger" *ngFor="let validation of validationMessage.birthDay">
+              <span
+                *ngIf="customerForm.get('birthDay').hasError(validation.type) && customerForm.get('birthDay').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>Gender:</th>
@@ -49,37 +56,50 @@
                 <option value="3">LGBT</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validationMessage.gender">
-                <span *ngIf="customerForm.get('gender').hasError(validation.type) && customerForm.get('gender').touched">{{validation.message}}</span>
+                <span
+                  *ngIf="customerForm.get('gender').hasError(validation.type) && customerForm.get('gender').touched">{{validation.message}}</span>
               </div>
             </td>
           </tr>
           <tr>
             <th>Id Card:</th>
-            <td><input class="form-control" type="text" formControlName="idCard"></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.idCard">
-              <span *ngIf="customerForm.get('idCard').hasError(validation.type) && customerForm.get('idCard').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="text" formControlName="idCard">
+              <div class="text-danger" *ngFor="let validation of validationMessage.idCard">
+              <span
+                *ngIf="customerForm.get('idCard').hasError(validation.type) && customerForm.get('idCard').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>Phone Number:</th>
-            <td><input class="form-control" type="text" formControlName="phone"></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.phone">
-              <span *ngIf="customerForm.get('phone').hasError(validation.type) && customerForm.get('phone').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="text" formControlName="phone">
+              <div class="text-danger" *ngFor="let validation of validationMessage.phone">
+              <span
+                *ngIf="customerForm.get('phone').hasError(validation.type) && customerForm.get('phone').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>Email:</th>
-            <td><input class="form-control" type="text" formControlName="email"></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.email">
-              <span *ngIf="customerForm.get('email').hasError(validation.type) && customerForm.get('email').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="text" formControlName="email">
+              <div class="text-danger" *ngFor="let validation of validationMessage.email">
+              <span
+                *ngIf="customerForm.get('email').hasError(validation.type) && customerForm.get('email').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <th>Address:</th>
-            <td><input class="form-control" type="text" formControlName="address" ></td>
-            <div class="text-danger" *ngFor="let validation of validationMessage.address">
-              <span *ngIf="customerForm.get('address').hasError(validation.type) && customerForm.get('address').touched">{{validation.message}}</span>
-            </div>
+            <td>
+              <input class="form-control" type="text" formControlName="address">
+              <div class="text-danger" *ngFor="let validation of validationMessage.address">
+              <span
+                *ngIf="customerForm.get('address').hasError(validation.type) && customerForm.get('address').touched">{{validation.message}}</span>
+              </div>
+            </td>
           </tr>
           <tr>
             <td align="center">
@@ -90,18 +110,20 @@
                        class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                    <path
+                      d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                   </svg>
                 </button>
               </a>
             </td>
             <td align="left">
               <button type="submit" class="btn btn-outline-primary" [disabled]="!customerForm.valid">
-                 Add
+                Add
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-plus-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                 </svg>
               </button>
             </td>
